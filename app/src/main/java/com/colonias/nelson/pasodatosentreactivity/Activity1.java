@@ -1,17 +1,21 @@
 package com.colonias.nelson.pasodatosentreactivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 public class Activity1 extends Activity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity1);
+
     }
 
 
@@ -35,5 +39,14 @@ public class Activity1 extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /*Metodos propios*/
+
+    public void mensajeError(String m)
+    {
+        Toast t= Toast.makeText(getApplicationContext(),m.toString(),Toast.LENGTH_LONG);
+        t.show();
+
     }
 }
