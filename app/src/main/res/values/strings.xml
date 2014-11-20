@@ -3,11 +3,17 @@
 
     <string name="app_name">PasoDatosEntreActivity</string>
     <string name="hello_Activiti1">Activity 1, introduce datos:</string>
+    <string name="hello_Activiti2">Introduzca los nuevos datos de su contacto y pulse guardar</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_activity2">Activity2</string>
     <string name="lblNombre">Nombre</string>
     <string name="lblTelefono">Telefono</string>
     <string name="btnAdd">Añadir</string>
     <string name="btnBuscar">Editar</string>
+    <string name="btnEditCancel">Volver</string>
+    <string name="btnEditAdd">Guardar</string>
+    <string name="btnListar">Listar</string>
+    <string name="title_activity_activity3">Activity3</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
