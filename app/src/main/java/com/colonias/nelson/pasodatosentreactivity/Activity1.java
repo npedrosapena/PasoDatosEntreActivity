@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class Activity1 extends Activity implements Serializable
 {
-   public Agenda a= new Agenda();
+   public static Agenda a= new Agenda();
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -38,7 +38,7 @@ public class Activity1 extends Activity implements Serializable
                 try
                 {
 
-                    Contacto contacto = new Contacto(nombre.getText().toString(), Integer.parseInt(tlf.getText().toString()));
+                    Contacto contacto = new Contacto(nombre.getText().toString(), Integer.parseInt(tlf.getText().toString()),Integer.parseInt(a.longitud()));
 
 
                     if(a.guardarContacto(contacto))
@@ -70,15 +70,16 @@ public class Activity1 extends Activity implements Serializable
             @Override
             public void onClick(View v)
             {
-                //
+
                 Bundle bundle= new Bundle();
                 Intent intento= new Intent(Activity1.this,Activity3.class);//del activity que estamos hasta el que queremos ir
 
-                ArrayList<Contacto> arrayContactos=a.arrayContactos();
+               // ArrayList<Contacto> arrayContactos=a.arrayContactos();
 
 
                 bundle.putSerializable("agenda",a);
-                bundle.putSerializable("contactos", arrayContactos);
+               // bundle.putSerializable("contactos", arrayContactos);
+
                 intento.putExtras(bundle);
 
                 startActivityForResult(intento,1);
@@ -88,14 +89,14 @@ public class Activity1 extends Activity implements Serializable
     }
 
 
-    @Override
+   /* @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
 
         this.a=(Agenda)data.getExtras().getSerializable("agenda");
 
 
-    }
+    }*/
 
 
     @Override
