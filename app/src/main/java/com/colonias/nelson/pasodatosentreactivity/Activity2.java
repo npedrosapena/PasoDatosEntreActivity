@@ -18,6 +18,15 @@ import java.util.ArrayList;
 public class Activity2 extends Activity implements Serializable
 {
 
+     EditText txtNombreEd;
+     EditText txtTelefonoEd;
+
+     Intent i;
+     Agenda a;
+
+     ArrayList<Contacto> ContactoArray;
+     Integer posicion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -25,17 +34,16 @@ public class Activity2 extends Activity implements Serializable
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity2);
 
-        final EditText txtNombreEd= (EditText)findViewById(R.id.txtEditNombre);
-        final EditText txtTelefonoEd= (EditText)findViewById(R.id.txtTelefonoEdit);
+        txtNombreEd = (EditText)findViewById(R.id.txtEditNombre);
+        txtTelefonoEd = (EditText)findViewById(R.id.txtTelefonoEdit);
 
-        final Intent i= getIntent();
+        i= getIntent();
+        a = (Agenda)i.getSerializableExtra("agenda");
 
-        //final Agenda a = (Agenda)i.getExtras().getSerializable("agenda");
-        //final Contacto c= (Contacto)i.getExtras().getSerializable("contacto");
-
-       // txtNombreEd.setText(c.getNombre().toString());
-        //txtTelefonoEd.setText(c.getTelefono().toString());
-
+        ContactoArray = a.arrayContactos();
+        posicion=Integer.parseInt(i.getExtras().get("posicion").toString());
+        txtNombreEd.setText(ContactoArray.get(posicion).getNombre().toString());
+        txtTelefonoEd.setText(ContactoArray.get(posicion).getTelefono().toString());
 
         Button btnVolver=(Button)findViewById(R.id.btnEditCancel);
         Button btnGuardar=(Button)findViewById(R.id.btnEditAdd);
@@ -57,25 +65,19 @@ public class Activity2 extends Activity implements Serializable
             public void onClick(View v)
             {
 
-                ArrayList<Contacto> ContactoPasado = (ArrayList<Contacto>) i.getExtras().getSerializable("array");
-                int posicion=Integer.parseInt(i.getExtras().get("posicion").toString());
-
-                Toast t = Toast.makeText(getApplicationContext(),ContactoPasado.get(posicion).getNombre(),Toast.LENGTH_LONG);
-                t.show();
-
-
-               // c.setNombre(txtNombreEd.getText().toString());
 
 
 
-              //  c.setTelefono(Integer.parseInt(String.valueOf(txtTelefonoEd.getText())));
+                ContactoArray.get(posicion).setNombre(txtNombreEd.getText().toString());
+                ContactoArray.get(posicion).setTelefono(Integer.parseInt(txtTelefonoEd.getText().toString()));
 
-              //  a.actualizarContacto(c.getId(),c);
+
+                a.actualizarContacto(posicion,ContactoArray.get(posicion));
 
                 //sobreescribo la agenda
 
                 Bundle b= new Bundle();
-            //    b.putSerializable("agenda",a);
+                b.putSerializable("agenda",a);
                 i.putExtras(b);
 
                 setResult(RESULT_OK, i);
@@ -84,8 +86,7 @@ public class Activity2 extends Activity implements Serializable
             }
         });
 
-      //  Toast t= Toast.makeText(getApplicationContext(),c.getNombre(),Toast.LENGTH_LONG);
-      //  t.show();
+
     }
 
 
