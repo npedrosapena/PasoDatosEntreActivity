@@ -14,10 +14,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-public class Activity3 extends ListActivity {
+public class Activity3 extends ListActivity
+{
 
-    //private Intent intentoContactosArray= getIntent();
-    //private ArrayList<Contacto> ContactoArray = (ArrayList<Contacto>) intentoContactosArray.getExtras().getSerializable("contactos");
+    Intent i;
+    Agenda a;
 
 
     @Override
@@ -26,11 +27,13 @@ public class Activity3 extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity3);
 
-         Intent intentoContactosArray= getIntent();
-         ArrayList<Contacto> ContactoArray = (ArrayList<Contacto>) intentoContactosArray.getExtras().getSerializable("contactos");
+        i= getIntent();
+        a = (Agenda)i.getExtras().getSerializable("agenda");
+
+        // ArrayList<Contacto> ContactoArray = (ArrayList<Contacto>) i.getSerializableExtra("contactos");
 
 
-        setListAdapter(new ArrayAdapter<Contacto>(this,android.R.layout.simple_list_item_1,ContactoArray));
+        setListAdapter(new ArrayAdapter<Contacto>(this,android.R.layout.simple_list_item_1,a.arrayContactos()));
 
     }
 
@@ -38,18 +41,35 @@ public class Activity3 extends ListActivity {
     {
         Intent intento2= new Intent(Activity3.this,Activity2.class);
 
+
         Intent intentoContactosArray= getIntent();
+        Agenda a = (Agenda)intentoContactosArray.getExtras().getSerializable("agenda");
         ArrayList<Contacto> ContactoArray = (ArrayList<Contacto>) intentoContactosArray.getExtras().getSerializable("contactos");
 
 
 
-        intento2.putExtra("array",intentoContactosArray.getExtras().getSerializable("contactos"));
+        intento2.putExtra("agenda",a);
+        //intento2.putExtra("array",intentoContactosArray.getSerializableExtra("contactos"));
         intento2.putExtra("posicion",position);
 
 
         startActivityForResult(intento2, 2);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+
+
+        this.a=(Agenda)data.getSerializableExtra("agenda");
+
+        ArrayList<Contacto> ContactoArray = (ArrayList<Contacto>) i.getSerializableExtra("contactos");
+
+
+        setListAdapter(new ArrayAdapter<Contacto>(this,android.R.layout.simple_list_item_1,a.arrayContactos()));
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

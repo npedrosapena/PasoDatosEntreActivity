@@ -10,7 +10,7 @@ public class Contacto implements Serializable {
     private static Integer id=0;
     private Integer telefono;
 
-    public Contacto(String n, Integer t)
+    public Contacto(String n, Integer t, Integer id)
     {
         this.setNombre(n);
         this.setTelefono(t);
@@ -43,7 +43,7 @@ public class Contacto implements Serializable {
     }
 
     public void setId(Integer id) {
-        this.id = id+1;
+        this.id = id;
     }
 
 

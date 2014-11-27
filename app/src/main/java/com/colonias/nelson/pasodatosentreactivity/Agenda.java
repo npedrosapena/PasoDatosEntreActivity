@@ -9,9 +9,10 @@ import java.util.Iterator;
 /**
  * Created by nelson on 7/11/14.
  */
-public class Agenda implements Serializable {
+public class Agenda implements Serializable
+{
 
-    private ArrayList<Contacto> lista= new ArrayList<Contacto>();
+    static ArrayList<Contacto> lista= new ArrayList<Contacto>();
 
     public Agenda(){}
 
@@ -43,18 +44,18 @@ public class Agenda implements Serializable {
 
     }
 
-    public void actualizarContacto(Integer id,Contacto c)
+    public void actualizarContacto(Integer posicion,Contacto c)
     {
-        int indiceElemento=0;
+        //int indiceElemento=0;
 
-        for (Contacto con :lista)
-        {
-            if(con.getId().equals(id)==true)
-            {
-             lista.set(indiceElemento,c);
-            }
-            indiceElemento += 1;
-        }
+        //for (Contacto con :lista)
+        //{
+           // if(con.getId().equals(id)==true)
+            //{
+             lista.set(posicion,c);
+            //}
+            //indiceElemento += 1;
+       // }
 
     }
 
